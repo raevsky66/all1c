@@ -62,6 +62,31 @@
 Конец </presentationExpression>
 				<appearance>
 					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<use>false</use>
+						<parameter>СтильГраницы</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:Line" width="0" gap="false">
+							<d7p1:style xsi:type="d7p1:SpreadsheetDocumentCellLineType">None</d7p1:style>
+						</value>
+						<item xsi:type="dcsset:SettingsParameterValue">
+							<parameter>СтильГраницы.Слева</parameter>
+							<value xmlns:d8p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d8p1:Line" width="2" gap="false">
+								<d8p1:style xsi:type="d8p1:SpreadsheetDocumentCellLineType">Solid</d8p1:style>
+							</value>
+						</item>
+						<item xsi:type="dcsset:SettingsParameterValue">
+							<parameter>СтильГраницы.Сверху</parameter>
+							<value xmlns:d8p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d8p1:Line" width="2" gap="false">
+								<d8p1:style xsi:type="d8p1:SpreadsheetDocumentCellLineType">Solid</d8p1:style>
+							</value>
+						</item>
+						<item xsi:type="dcsset:SettingsParameterValue">
+							<parameter>СтильГраницы.Справа</parameter>
+							<value xmlns:d8p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d8p1:Line" width="2" gap="false">
+								<d8p1:style xsi:type="d8p1:SpreadsheetDocumentCellLineType">Solid</d8p1:style>
+							</value>
+						</item>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
 						<parameter>ГоризонтальноеПоложение</parameter>
 						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:HorizontalAlign">Center</value>
 					</item>
@@ -78,10 +103,43 @@
 				</title>
 				<appearance>
 					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<use>false</use>
+						<parameter>СтильГраницы</parameter>
+						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:Line" width="0" gap="false">
+							<d7p1:style xsi:type="d7p1:SpreadsheetDocumentCellLineType">None</d7p1:style>
+						</value>
+						<item xsi:type="dcsset:SettingsParameterValue">
+							<parameter>СтильГраницы.Справа</parameter>
+							<value xmlns:d8p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d8p1:Line" width="2" gap="false">
+								<d8p1:style xsi:type="d8p1:SpreadsheetDocumentCellLineType">Solid</d8p1:style>
+							</value>
+						</item>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
 						<parameter>Формат</parameter>
 						<value xsi:type="xs:string">ЧЦ=7; ЧДЦ=2</value>
 					</item>
 				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Сумма</dataPath>
+				<field>Сумма</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Сумма, руб</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ЧЦ=9; ЧДЦ=2</value>
+					</item>
+				</appearance>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>Вес</dataPath>
+				<field>Вес</field>
 			</field>
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
@@ -140,7 +198,9 @@
 	МЕСЯЦ(Продажи.Период) КАК Период,
 	Продажи.Дистрибьютор КАК Дистрибьютор,
 	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ Продажи.Контрагент) КАК Контрагент,
-	0 КАК Номенклатура
+	0 КАК Номенклатура,
+	СУММА(Продажи.Сумма) КАК Сумма,
+	СУММА(Продажи.Вес) КАК Вес
 ПОМЕСТИТЬ ВременнаяТаблица
 ИЗ
 	РегистрНакопления.Продажи КАК Продажи
@@ -158,7 +218,9 @@
 	МЕСЯЦ(Продажи.Период),
 	Продажи.Дистрибьютор,
 	0,
-	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ Продажи.Номенклатура)
+	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ Продажи.Номенклатура),
+	0,
+	0
 ИЗ
 	РегистрНакопления.Продажи КАК Продажи
 ГДЕ
@@ -176,7 +238,9 @@
 	ВременнаяТаблица.Дистрибьютор КАК Дистрибьютор,
 	СУММА(ВременнаяТаблица.Контрагент) КАК Контрагент,
 	СУММА(ВременнаяТаблица.Номенклатура) КАК Номенклатура,
-	СРЕДНЕЕ(ОтклонениеПоНоменклатуре.Отклонение) КАК Отклонение
+	СРЕДНЕЕ(ОтклонениеПоНоменклатуре.Отклонение) КАК Отклонение,
+	СУММА(ВременнаяТаблица.Сумма) КАК Сумма,
+	СУММА(ВременнаяТаблица.Вес) КАК Вес
 ИЗ
 	ВременнаяТаблица КАК ВременнаяТаблица
 		ЛЕВОЕ СОЕДИНЕНИЕ ОтклонениеПоНоменклатуре КАК ОтклонениеПоНоменклатуре
@@ -193,6 +257,16 @@
 	Контрагент,
 	Номенклатура</query>
 		</dataSet>
+		<calculatedField>
+			<dataPath>ВесВКГ</dataPath>
+			<expression>Вес*1000</expression>
+			<title xmlns:d4p1="http://v8.1c.ru/8.1/data/core" xsi:type="d4p1:LocalStringType">
+				<d4p1:item>
+					<d4p1:lang>ru</d4p1:lang>
+					<d4p1:content>Вес, кг</d4p1:content>
+				</d4p1:item>
+			</title>
+		</calculatedField>
 		<totalField>
 			<dataPath>Контрагент</dataPath>
 			<expression>Среднее(Контрагент)</expression>
@@ -206,6 +280,21 @@
 		<totalField>
 			<dataPath>Отклонение</dataPath>
 			<expression>Сумма(Отклонение)</expression>
+			<group>Дистрибьютор</group>
+		</totalField>
+		<totalField>
+			<dataPath>Сумма</dataPath>
+			<expression>Сумма(Сумма)</expression>
+			<group>Дистрибьютор</group>
+		</totalField>
+		<totalField>
+			<dataPath>Вес</dataPath>
+			<expression>Сумма(Вес)</expression>
+			<group>Дистрибьютор</group>
+		</totalField>
+		<totalField>
+			<dataPath>ВесВКГ</dataPath>
+			<expression>Сумма(ВесВКГ)</expression>
 			<group>Дистрибьютор</group>
 		</totalField>
 		<parameter>
@@ -279,6 +368,7 @@
 	</selection>
 	<filter>
 		<item xsi:type="FilterItemComparison">
+			<use>false</use>
 			<left xsi:type="dcscor:Field">Дистрибьютор</left>
 			<comparisonType>Equal</comparisonType>
 			<userSettingID>51df5288-9a5f-4ac6-b579-aefbbcdb2215</userSettingID>
@@ -339,6 +429,12 @@
 				</item>
 				<item xsi:type="SelectedItemField">
 					<field>Номенклатура</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>ВесВКГ</field>
+				</item>
+				<item xsi:type="SelectedItemField">
+					<field>Сумма</field>
 				</item>
 				<item xsi:type="SelectedItemField">
 					<field>Отклонение</field>
