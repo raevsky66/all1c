@@ -56,10 +56,6 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
 				</role>
-				<presentationExpression>Выбор 
-Когда Период=1 Тогда "Январь" 
-Когда Период=2 Тогда "Февраль" Когда Период=3 Тогда "Март" Когда Период=4 Тогда "Апрель" Когда Период=5 Тогда "Май" Когда Период=6 Тогда "Июнь" Когда Период=7 Тогда "Июль" Когда Период=8 Тогда "Август" Когда Период=9 Тогда "Сентябрь" Когда Период=10 Тогда "Октябрь" Когда Период=11 Тогда "Ноябрь" Когда Период=12 Тогда "Декабрь" Иначе Период
-Конец </presentationExpression>
 				<appearance>
 					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
 						<use>false</use>
@@ -89,6 +85,10 @@
 					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
 						<parameter>ГоризонтальноеПоложение</parameter>
 						<value xmlns:d7p1="http://v8.1c.ru/8.1/data/ui" xsi:type="d7p1:HorizontalAlign">Center</value>
+					</item>
+					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
+						<parameter>Формат</parameter>
+						<value xsi:type="xs:string">ДФ = ММММ.гггг</value>
 					</item>
 				</appearance>
 			</field>
@@ -133,7 +133,7 @@
 				<appearance>
 					<item xmlns="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xsi:type="dcsset:SettingsParameterValue">
 						<parameter>Формат</parameter>
-						<value xsi:type="xs:string">ЧЦ=9; ЧДЦ=2</value>
+						<value xsi:type="xs:string">ЧЦ=11; ЧДЦ=2</value>
 					</item>
 				</appearance>
 			</field>
@@ -144,7 +144,7 @@
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
 	Отклонение.Дистрибьютор КАК Дистрибьютор,
-	МЕСЯЦ(Отклонение.ДатаПродажи) КАК Период,
+	НАЧАЛОПЕРИОДА(Отклонение.ДатаПродажи, МЕСЯЦ) КАК Период,
 	СРЕДНЕЕ((Отклонение.ЦенаПродажи / Отклонение.ЦенаПокупки - 1) * 100) КАК Отклонение
 ПОМЕСТИТЬ ОтклонениеПоНоменклатуре
 ИЗ
@@ -190,12 +190,12 @@
 
 СГРУППИРОВАТЬ ПО
 	Отклонение.Дистрибьютор,
-	МЕСЯЦ(Отклонение.ДатаПродажи)
+	НАЧАЛОПЕРИОДА(Отклонение.ДатаПродажи, МЕСЯЦ)
 ;
 
 ////////////////////////////////////////////////////////////////////////////////
 ВЫБРАТЬ
-	МЕСЯЦ(Продажи.Период) КАК Период,
+	НАЧАЛОПЕРИОДА(Продажи.Период, МЕСЯЦ) КАК Период,
 	Продажи.Дистрибьютор КАК Дистрибьютор,
 	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ Продажи.Контрагент) КАК Контрагент,
 	0 КАК Номенклатура,
@@ -210,12 +210,12 @@
 
 СГРУППИРОВАТЬ ПО
 	Продажи.Дистрибьютор,
-	МЕСЯЦ(Продажи.Период)
+	НАЧАЛОПЕРИОДА(Продажи.Период, МЕСЯЦ)
 
 ОБЪЕДИНИТЬ ВСЕ
 
 ВЫБРАТЬ
-	МЕСЯЦ(Продажи.Период),
+	НАЧАЛОПЕРИОДА(Продажи.Период, МЕСЯЦ),
 	Продажи.Дистрибьютор,
 	0,
 	КОЛИЧЕСТВО(РАЗЛИЧНЫЕ Продажи.Номенклатура),
@@ -229,7 +229,7 @@
 
 СГРУППИРОВАТЬ ПО
 	Продажи.Дистрибьютор,
-	МЕСЯЦ(Продажи.Период)
+	НАЧАЛОПЕРИОДА(Продажи.Период, МЕСЯЦ)
 ;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +279,7 @@
 		</totalField>
 		<totalField>
 			<dataPath>Отклонение</dataPath>
-			<expression>Сумма(Отклонение)</expression>
+			<expression>Среднее(Отклонение)</expression>
 			<group>Дистрибьютор</group>
 		</totalField>
 		<totalField>
@@ -391,6 +391,21 @@
 			<orderType>Asc</orderType>
 		</item>
 	</order>
+	<outputParameters>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>ВертикальноеРасположениеОбщихИтогов</dcscor:parameter>
+			<dcscor:value xsi:type="dcscor:DataCompositionTotalPlacement">None</dcscor:value>
+		</dcscor:item>
+		<dcscor:item xsi:type="SettingsParameterValue">
+			<dcscor:parameter>Заголовок</dcscor:parameter>
+			<dcscor:value xsi:type="v8:LocalStringType">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Анализ продаж дистрибьюторов</v8:content>
+				</v8:item>
+			</dcscor:value>
+		</dcscor:item>
+	</outputParameters>
 	<item xsi:type="StructureItemTable">
 		<column>
 			<groupItems>
