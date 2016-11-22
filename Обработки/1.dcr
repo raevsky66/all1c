@@ -1,0 +1,214 @@
+﻿{"#",e603c0f2-92fb-4d47-8f38-a44a381cf235,
+{1,
+{3,
+{1,"Имя",
+{"Pattern",
+{"S",64,1}
+},"",0},
+{3,"ТипСтроки",
+{"Pattern",
+{"N",10,0,0}
+},"",0},
+{2,"Данные",
+{"Pattern",
+{"S"}
+},"",0}
+},
+{2,3,0,1,1,3,2,2,
+{1,1,
+{2,0,3,
+{"S","Отчеты"},
+{"N",4},
+{"S",""},1,
+{1,1,
+{2,1,3,
+{"S","Отчет"},
+{"N",0},
+{"S","<dataCompositionSchema xmlns=""http://v8.1c.ru/8.1/data-composition-system/schema"" xmlns:dcscom=""http://v8.1c.ru/8.1/data-composition-system/common"" xmlns:dcscor=""http://v8.1c.ru/8.1/data-composition-system/core"" xmlns:dcsset=""http://v8.1c.ru/8.1/data-composition-system/settings"" xmlns:v8=""http://v8.1c.ru/8.1/data/core"" xmlns:v8ui=""http://v8.1c.ru/8.1/data/ui"" xmlns:xs=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+	<dataSource>
+		<name>ИсточникДанных1</name>
+		<dataSourceType>Local</dataSourceType>
+	</dataSource>
+	<dataSet xsi:type=""DataSetQuery"">
+		<name>НаборДанных1</name>
+		<field xsi:type=""DataSetFieldField"">
+			<dataPath>ВесОборот</dataPath>
+			<field>ВесОборот</field>
+		</field>
+		<field xsi:type=""DataSetFieldField"">
+			<dataPath>КоличествоОборот</dataPath>
+			<field>КоличествоОборот</field>
+		</field>
+		<field xsi:type=""DataSetFieldField"">
+			<dataPath>Номенклатура</dataPath>
+			<field>Номенклатура</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+		</field>
+		<field xsi:type=""DataSetFieldField"">
+			<dataPath>СуммаОборот</dataPath>
+			<field>СуммаОборот</field>
+		</field>
+		<field xsi:type=""DataSetFieldField"">
+			<dataPath>Дистрибьютор</dataPath>
+			<field>Дистрибьютор</field>
+			<role>
+				<dcscom:dimension>true</dcscom:dimension>
+			</role>
+		</field>
+		<dataSource>ИсточникДанных1</dataSource>
+		<query>ВЫБРАТЬ
+	ПродажиДистрибьюторуОбороты.Дистрибьютор КАК Дистрибьютор,
+	ПродажиДистрибьюторуОбороты.Номенклатура КАК Номенклатура,
+	ПродажиДистрибьюторуОбороты.КоличествоОборот КАК КоличествоОборот,
+	ПродажиДистрибьюторуОбороты.СуммаОборот КАК СуммаОборот,
+	ПродажиДистрибьюторуОбороты.ВесОборот КАК ВесОборот
+ИЗ
+	РегистрНакопления.ПродажиДистрибьютору.Обороты(&amp;НачалоПериода, &amp;КонецПериода, , ) КАК ПродажиДистрибьюторуОбороты</query>
+	</dataSet>
+	<totalField>
+		<dataPath>ВесОборот</dataPath>
+		<expression>Сумма(ВесОборот)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>КоличествоОборот</dataPath>
+		<expression>Сумма(КоличествоОборот)</expression>
+	</totalField>
+	<totalField>
+		<dataPath>СуммаОборот</dataPath>
+		<expression>Сумма(СуммаОборот)</expression>
+	</totalField>
+	<parameter>
+		<name>НачалоПериода</name>
+		<title xsi:type=""v8:LocalStringType"">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Начало периода</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type=""xs:dateTime"">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<expression>&amp;Период.ДатаНачала</expression>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>КонецПериода</name>
+		<title xsi:type=""v8:LocalStringType"">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Конец периода</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>xs:dateTime</v8:Type>
+			<v8:DateQualifiers>
+				<v8:DateFractions>DateTime</v8:DateFractions>
+			</v8:DateQualifiers>
+		</valueType>
+		<value xsi:type=""xs:dateTime"">0001-01-01T00:00:00</value>
+		<useRestriction>false</useRestriction>
+		<expression>&amp;Период.ДатаОкончания</expression>
+		<availableAsField>false</availableAsField>
+	</parameter>
+	<parameter>
+		<name>Период</name>
+		<title xsi:type=""v8:LocalStringType"">
+			<v8:item>
+				<v8:lang>ru</v8:lang>
+				<v8:content>Период</v8:content>
+			</v8:item>
+		</title>
+		<valueType>
+			<v8:Type>v8:StandardPeriod</v8:Type>
+		</valueType>
+		<value xsi:type=""v8:StandardPeriod"">
+			<v8:variant xsi:type=""v8:StandardPeriodVariant"">Custom</v8:variant>
+			<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+			<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+		</value>
+		<useRestriction>false</useRestriction>
+	</parameter>
+	<settingsVariant>
+		<dcsset:name>Основной</dcsset:name>
+		<dcsset:presentation xsi:type=""xs:string"">Основной</dcsset:presentation>
+		<dcsset:settings xmlns:style=""http://v8.1c.ru/8.1/data/ui/style"" xmlns:sys=""http://v8.1c.ru/8.1/data/ui/fonts/system"" xmlns:web=""http://v8.1c.ru/8.1/data/ui/colors/web"" xmlns:win=""http://v8.1c.ru/8.1/data/ui/colors/windows"">
+			<dcsset:dataParameters>
+				<dcscor:item xsi:type=""dcsset:SettingsParameterValue"">
+					<dcscor:parameter>Период</dcscor:parameter>
+					<dcscor:value xsi:type=""v8:StandardPeriod"">
+						<v8:variant xsi:type=""v8:StandardPeriodVariant"">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</dcscor:value>
+				</dcscor:item>
+			</dcsset:dataParameters>
+			<dcsset:item xsi:type=""dcsset:StructureItemGroup"">
+				<dcsset:groupItems>
+					<dcsset:item xsi:type=""dcsset:GroupItemField"">
+						<dcsset:field>Дистрибьютор</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+					<dcsset:item xsi:type=""dcsset:GroupItemField"">
+						<dcsset:field>Номенклатура</dcsset:field>
+						<dcsset:groupType>Items</dcsset:groupType>
+						<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+						<dcsset:periodAdditionBegin xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+						<dcsset:periodAdditionEnd xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+					</dcsset:item>
+				</dcsset:groupItems>
+				<dcsset:order>
+					<dcsset:item xsi:type=""dcsset:OrderItemAuto""/>
+				</dcsset:order>
+				<dcsset:selection>
+					<dcsset:item xsi:type=""dcsset:SelectedItemAuto""/>
+				</dcsset:selection>
+				<dcsset:item xsi:type=""dcsset:StructureItemGroup"">
+					<dcsset:groupItems>
+						<dcsset:item xsi:type=""dcsset:GroupItemField"">
+							<dcsset:field>ВесОборот</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+						<dcsset:item xsi:type=""dcsset:GroupItemField"">
+							<dcsset:field>КоличествоОборот</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+						<dcsset:item xsi:type=""dcsset:GroupItemField"">
+							<dcsset:field>СуммаОборот</dcsset:field>
+							<dcsset:groupType>Items</dcsset:groupType>
+							<dcsset:periodAdditionType>None</dcsset:periodAdditionType>
+							<dcsset:periodAdditionBegin xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionBegin>
+							<dcsset:periodAdditionEnd xsi:type=""xs:dateTime"">0001-01-01T00:00:00</dcsset:periodAdditionEnd>
+						</dcsset:item>
+					</dcsset:groupItems>
+					<dcsset:order>
+						<dcsset:item xsi:type=""dcsset:OrderItemAuto""/>
+					</dcsset:order>
+					<dcsset:selection>
+						<dcsset:item xsi:type=""dcsset:SelectedItemAuto""/>
+					</dcsset:selection>
+				</dcsset:item>
+			</dcsset:item>
+		</dcsset:settings>
+	</settingsVariant>
+</dataCompositionSchema>"},0}
+}
+}
+},-1,1}
+}
+}

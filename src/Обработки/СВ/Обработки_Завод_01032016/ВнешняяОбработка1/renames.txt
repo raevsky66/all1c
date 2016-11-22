@@ -1,0 +1,7 @@
+﻿copyinfo-->und\copyinfo
+f80ed8d6-6d1d-4597-a461-3ada7f78d8f8-->und\f80ed8d6-6d1d-4597-a461-3ada7f78d8f8
+f8a87c27-e2a2-4521-814d-0e1660158670-->und\f8a87c27-e2a2-4521-814d-0e1660158670
+f8a87c27-e2a2-4521-814d-0e1660158670.0-->Form\Форма
+root-->und\root
+version-->und\version
+versions-->und\versions

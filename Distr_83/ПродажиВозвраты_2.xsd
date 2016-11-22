@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by MESMERiZE (MiZE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://raevsky66/2" targetNamespace="http://raevsky66/2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Таблица">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="ns1:Строка"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Строка">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Код_дистрибьютора" type="xs:string"/>
+				<xs:element name="Наименование_дистрибьютора" type="xs:string"/>
+				<xs:element name="Номенклатура" type="xs:string"/>
+				<xs:element name="Артикул_Сыробогатов" type="xs:string"/>
+				<xs:element name="Номер_накладной" type="xs:string"/>
+				<xs:element name="Дата_накладной" type="xs:date"/>
+				<xs:element name="Количество" type="xs:decimal"/>
+				<xs:element name="Ед._измерения" type="xs:string"/>
+				<xs:element name="Вес" type="xs:decimal"/>
+				<xs:element name="Сумма" type="xs:decimal"/>
+			</xs:sequence>
+			<xs:attribute name="Номер" type="xs:integer"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 (http://www.altova.com) by MESMERiZE (MiZE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://raevsky66" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ПродажиВозвраты">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="ПродажаВозврат">
+					<xs:complexType>
+						<xs:attribute name="КодДистрибьютора" type="xs:string"/>
+						<xs:attribute name="НаименованиеДистрибьютора" type="xs:string"/>
+						<xs:attribute name="Номенклатура" type="xs:string"/>
+						<xs:attribute name="АртикулСыробогатов" type="xs:string"/>
+						<xs:attribute name="ЕдИзм" type="xs:string"/>
+						<xs:attribute name="НомерНакладной" type="xs:string"/>
+						<xs:attribute name="ДатаНакладной" type="xs:date"/>
+						<xs:attribute name="Количество" type="xs:decimal"/>
+						<xs:attribute name="Вес" type="xs:decimal"/>
+						<xs:attribute name="Сумма" type="xs:decimal"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,12 @@
+﻿3fe7537a-9b59-4fed-a546-6d09b1121c09-->und\3fe7537a-9b59-4fed-a546-6d09b1121c09
+3fe7537a-9b59-4fed-a546-6d09b1121c09.0-->und\3fe7537a-9b59-4fed-a546-6d09b1121c09.0
+42a1296e-113c-491c-82cc-ef904d935684-->und\42a1296e-113c-491c-82cc-ef904d935684
+4e2415ca-3dd6-47b6-9524-9902cc075069.0\info-->und\4e2415ca-3dd6-47b6-9524-9902cc075069.0\info
+4e2415ca-3dd6-47b6-9524-9902cc075069.0\text-->ObjectModule.bsl
+4e2415ca-3dd6-47b6-9524-9902cc075069.1-->und\4e2415ca-3dd6-47b6-9524-9902cc075069.1
+a2cc217c-6f02-4f2c-8f62-a8f2f6a6126c-->und\a2cc217c-6f02-4f2c-8f62-a8f2f6a6126c
+a2cc217c-6f02-4f2c-8f62-a8f2f6a6126c.0-->Form\ФормаСообщенияОбУправляемомРежиме
+copyinfo-->und\copyinfo
+root-->und\root
+version-->und\version
+versions-->und\versions

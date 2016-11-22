@@ -1,0 +1,7 @@
+﻿copyinfo-->und\copyinfo
+da7a62b7-3905-4c2a-9fc4-cd4a85a4962c-->und\da7a62b7-3905-4c2a-9fc4-cd4a85a4962c
+ea25deb5-5fa6-4c4d-87f8-b90a75d0b457.0\info-->und\ea25deb5-5fa6-4c4d-87f8-b90a75d0b457.0\info
+ea25deb5-5fa6-4c4d-87f8-b90a75d0b457.0\text-->ObjectModule.bsl
+root-->und\root
+version-->und\version
+versions-->und\versions
